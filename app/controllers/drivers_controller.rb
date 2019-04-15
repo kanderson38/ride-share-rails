@@ -19,6 +19,28 @@ class DriversController < ApplicationController
     end
   end
 
+  def show
+    driver_id = params[:id]
+    @driver = Driver.find_by(id: driver_id)
+
+    if !@driver
+      redirect_to drivers_path, flash: { error: "Could not find driver with id: #{driver_id}" }
+    end
+  end
+
+  #   def destroy
+  #     driver_id = params[:id]
+  #     driver = Driver.find_by(id: driver_id)
+
+  #     if driver
+
+  #       driver.destroy
+  #       redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
+  #     else
+  #       redirect_to drivers_path, flash: { alert: "No such driver" }
+  #     end
+  #   end
+
   private
 
   def driver_params

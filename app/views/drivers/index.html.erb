@@ -1,6 +1,6 @@
 <h2>driver index</h2>
 <ul>
 <% @drivers.each do |driver| %>
-<li> <%= "#{driver.id}: #{driver.name}" %> </li>
+<li> <%=driver.id %>  <%= link_to driver.name, driver_path(driver) %> </li>
 <% end %>
 </ul>

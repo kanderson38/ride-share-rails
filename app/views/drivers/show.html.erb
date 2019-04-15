@@ -1,0 +1,14 @@
+<h2>Driver Details</h2>
+
+<ul>
+<li>
+<span><%= @driver.id %></span>
+<span><%= @driver.name %></span>
+<span><% @driver.trips.each do |trip| %>
+    <%= trip.id %>
+<% end %></span>
+<span> Total earnings: <%= @driver.total_earnings%></span>
+<span> Average Ratings: <%= @driver.average_ratings%></span>
+<span><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></span>
+</li>
+</ul>
