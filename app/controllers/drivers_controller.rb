@@ -28,6 +28,26 @@ class DriversController < ApplicationController
     end
   end
 
+  def edit
+    @driver = Driver.find_by(id: params[:id])
+
+    if !@driver
+      redirect_to drivers_path, flash: { alert: "No such driver" }
+    end
+  end
+
+  def update
+    driver = Driver.find_by(id: params[:id])
+
+    if driver
+      Driver.update(driver_params)
+
+      redirect_to driver_path(params[:id])
+    else
+      redirect_to drivers_path, flash: { alert: "No such driver" }
+    end
+  end
+
   #   def destroy
   #     driver_id = params[:id]
   #     driver = Driver.find_by(id: driver_id)

@@ -1,0 +1,11 @@
+<%= form_with model: @driver, class: 'driver-form' do |f| %>
+  
+
+    <%= f.label :name, "Driver name (required):", class: 'driver-label'%>
+    <%= f.text_field :name, placeholder: "Joe Schmo", class: 'driver-input'%>
+ 
+    <%= f.label :vin, "VIN:", class: 'driver-label' %>
+    <%= f.text_field :vin, placeholder: "1234567890", class: 'driver-input' %>
+ 
+  <%= f.submit "Save", class: 'save-button' %>
+<% end %>
