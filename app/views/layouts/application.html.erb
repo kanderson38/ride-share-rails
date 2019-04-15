@@ -10,6 +10,14 @@
   </head>
 
   <body>
+  <nav>
+  <ul>
+  <li><%= link_to "View all Drivers", drivers_path %></li>
+  <li><%= link_to "Add a Driver", new_driver_path %> </li>
+  <li>View all Passengers</li>
+  <li>Add a Passenger</li>
+  </ul>
+  </nav>
     <%= yield %>
   </body>
 </html>
