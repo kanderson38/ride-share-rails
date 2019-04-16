@@ -6,6 +6,8 @@ class Driver < ApplicationRecord
     self.trips.each do |trip|
       sum += trip.cost
     end
+    sum -= 1.65
+    sum *= 0.8
     return sum
   end
 
