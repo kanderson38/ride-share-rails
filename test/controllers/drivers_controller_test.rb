@@ -1,15 +1,14 @@
 require "test_helper"
 
 describe DriversController do
-
   let (:driver) {
     Driver.create(name: "Tom", vin: "123456")
   }
 
   describe "index" do
     it "can get index" do
-         get drivers_path
-         must_respond_with :success
+      get drivers_path
+      must_respond_with :success
     end
 
     it "can get the root path" do
@@ -33,18 +32,41 @@ describe DriversController do
   end
 
   describe "update" do
-    # Your tests go here
+    it "updated the driver's info" do
+      driver = Driver.first
+      driver.name = "new name"
+      driver.vin = "new VIN"
+
+      driver.save!
+
+      expect(Driver.first.name).must_equal "new name"
+      expect(Driver.first.vin).must_equal "new VIN"
+    end
   end
 
   describe "new" do
-    # Your tests go here
+    it "displays the page" do
+      get new_driver_path
+      must_respond_with :success
+    end
   end
 
   describe "create" do
-    # Your tests go here
+    it "adds a driver to the database" do
+      expect {
+        Driver.create!(name: "new", vin: "vin")
+      }.must_change "Driver.count", 1
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "removes the driver from the database" do
+      doomed_driver = Driver.create!(name: "Tom Dead", vin: "SDFGSAFDG")
+      expect {
+        doomed_driver.destroy
+      }.must_change "Driver.count", -1
+
+      expect
+    end
   end
 end
