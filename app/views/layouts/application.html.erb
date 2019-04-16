@@ -4,21 +4,31 @@
     <title>RideShareRails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
   </head>
-
   <body>
-  <nav>
-  <ul>
-  <li><%= link_to "View all Drivers", drivers_path %></li>
-  <li><%= link_to "Add a Driver", new_driver_path %> </li>
-  
-  <li><%= link_to "View all Passengers", passengers_path %></li>
-    <li><%= link_to "Add a Passenger", new_passenger_path %> </li>
-  </ul>
-  </nav>
+    <nav>
+      <%= link_to "RideShare", root_path, class: "main_logo" %>
+      <div class="dropdown">
+        <button class="dropbtn">Drivers</button>
+        <div class="dropdown-content">
+          <%= link_to "View all Drivers", drivers_path %>
+          <%= link_to "Add a Driver", new_driver_path %>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Passengers</button>
+        <div class="dropdown-content">
+          <%= link_to "View all Passengers", passengers_path %>
+          <%= link_to "Add a Passenger", new_passenger_path %>
+        </div>
+      </div>
+    </nav>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>

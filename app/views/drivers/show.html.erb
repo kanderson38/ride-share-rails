@@ -1,15 +1,21 @@
-<h2>Driver Details</h2>
+<h1>Driver Details</h1>
 
-<ul>
-<li>
-<span><%= @driver.id %></span>
-<span><%= @driver.name %></span>
-<span><% @driver.trips.each do |trip| %>
+<ul class="detail-list">
+<li class="driver-details">
+
+<span id="name"><h2><%= @driver.name %></h2></span>
+<span><strong>Trips</strong></span>
+<span><strong>Earnings</strong></span>
+<span><strong>Average Rating</strong></span>
+<span></span>
+<span></span>
+
+<span id="trips"><% @driver.trips.each do |trip| %>
     <%= trip.id %>
 <% end %></span>
-<span> Total earnings: <%= @driver.total_earnings%></span>
-<span> Average Ratings: <%= @driver.average_ratings%></span>
-<span><%= link_to "Edit", edit_driver_path(@driver.id)  %></span>
-<span><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></span>
+<span id="earnings"><%= @driver.total_earnings%></span>
+<span id="ratings"><%= @driver.average_ratings%></span>
+<span id="edit"><%= link_to "Edit", edit_driver_path(@driver.id)  %></span>
+<span id="delete"><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: {confirm: "Are you sure?"} %></span>
 </li>
 </ul>
