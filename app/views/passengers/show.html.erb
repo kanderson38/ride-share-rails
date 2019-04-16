@@ -1,0 +1,10 @@
+<h2>Passenger Details</h2>
+
+<ul>
+<li>
+<span><%= @passenger.id %></span>
+<span><%= @passenger.name %></span>
+<span><% @passenger.trips.each do |trip| %>
+    <%= trip.id %>
+<% end %></span>
+<span> Total Amount Charged: <%= @passenger.amount_charged%></span>
