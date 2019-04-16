@@ -8,3 +8,5 @@
     <%= trip.id %>
 <% end %></span>
 <span> Total Amount Charged: <%= @passenger.amount_charged%></span>
+<span><%= link_to "Edit", edit_passenger_path(@passenger.id)  %></span>
+<span><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></span>
