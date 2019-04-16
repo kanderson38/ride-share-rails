@@ -54,7 +54,7 @@ class DriversController < ApplicationController
 
     if driver
       driver.trips.each do |trip|
-        trip.driver_id = nil
+        trip.driver_id = 0
       end
       driver.destroy
       redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
