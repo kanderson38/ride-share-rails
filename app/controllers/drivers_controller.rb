@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all
+    @drivers = Driver.all.order("id")
   end
 
   def new
@@ -48,21 +48,20 @@ class DriversController < ApplicationController
     end
   end
 
-  #   def destroy
-  #     driver_id = params[:id]
-  #     driver = Driver.find_by(id: driver_id)
+  def destroy
+    driver_id = params[:id]
+    driver = Driver.find_by(id: driver_id)
 
-  #     if driver
-  #       dead_trips = driver.trips
-  #       dead_trips.each do |trip|
-  #         trip.destroy
-  #       end
-  #       driver.destroy
-  #       redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
-  #     else
-  #       redirect_to drivers_path, flash: { alert: "No such driver" }
-  #     end
-  #   end
+    if driver
+      driver.trips.each do |trip|
+        trip.driver_id = nil
+      end
+      driver.destroy
+      redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
+    else
+      redirect_to drivers_path, flash: { alert: "No such driver" }
+    end
+  end
 
   private
 
