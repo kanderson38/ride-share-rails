@@ -37,14 +37,12 @@ class PassengersController < ApplicationController
   end
 
   def update
-    passenger = Passenger.find_by(id: params[:id])
-
-    if passenger
-      passenger.update(passenger_params)
-
+    @passenger = Passenger.find_by(id: params[:id])
+    success = @passenger.update(passenger_params)
+    if success
       redirect_to passenger_path(params[:id])
     else
-      redirect_to passenger_path, flash: { alert: "No such passenger" }
+      render :edit
     end
   end
 
