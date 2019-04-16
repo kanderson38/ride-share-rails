@@ -12,7 +12,7 @@ class DriversController < ApplicationController
 
     success = @driver.save
     if success
-      redirect_to drivers_path, flash: { alert: "driver added successfully" }
+      redirect_to drivers_path
     else
       render :new
     end
@@ -23,7 +23,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: driver_id)
 
     if !@driver
-      redirect_to drivers_path, flash: { error: "Could not find driver with id: #{driver_id}" }
+      redirect_to drivers_path
     end
   end
 
@@ -31,19 +31,22 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if !@driver
-      redirect_to drivers_path, flash: { alert: "No such driver" }
+      redirect_to drivers_path
     end
   end
 
   def update
-    driver = Driver.find_by(id: params[:id])
+    @driver = Driver.find_by(id: params[:id])
 
-    if driver
-      driver.update(driver_params)
-
-      redirect_to driver_path(params[:id])
+    if @driver
+      success = @driver.update(driver_params)
+      if success
+        redirect_to driver_path(params[:id])
+      else
+        render :edit
+      end
     else
-      redirect_to drivers_path, flash: { alert: "No such driver" }
+      redirect_to drivers_path
     end
   end
 

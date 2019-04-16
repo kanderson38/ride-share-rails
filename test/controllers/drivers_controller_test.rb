@@ -42,6 +42,16 @@ describe DriversController do
       expect(Driver.first.name).must_equal "new name"
       expect(Driver.first.vin).must_equal "new VIN"
     end
+
+    it "doesn't update if a field is empty" do
+      driver = Driver.first
+      driver.name = ""
+      driver.vin = ""
+
+      driver.save!
+
+      assert_template :edit
+    end
   end
 
   describe "new" do
