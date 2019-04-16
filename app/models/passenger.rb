@@ -1,5 +1,5 @@
 class Passenger < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :nullify
 
   def amount_charged
     sum = 0
