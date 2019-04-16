@@ -1,3 +1,17 @@
+
+<% if @passenger.errors.any? %>
+  <ul class="errors">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <% if column == :phone_num %>
+            <% column = "Phone number"%>
+        <% end%>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @passenger, class: 'passenger-form' do |f| %>
   
 
@@ -9,3 +23,4 @@
  
   <%= f.submit "Save", class: 'save-button' %>
 <% end %>
+

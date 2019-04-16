@@ -17,14 +17,14 @@ class PassengersController < ApplicationController
   end
 
   def create
-    passenger = Passenger.new(passenger_params)
+    @passenger = Passenger.new(passenger_params)
 
-    if passenger.name != ""
-      passenger.save
+    success = @passenger.save
 
-      redirect_to passengers_path, flash: { alert: "passenger added successfully" }
+    if success 
+      redirect_to passengers_path
     else
-      redirect_to new_passenger_path
+      render :new
     end
   end
 
