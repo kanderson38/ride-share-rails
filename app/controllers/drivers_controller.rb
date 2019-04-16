@@ -53,9 +53,6 @@ class DriversController < ApplicationController
     driver = Driver.find_by(id: driver_id)
 
     if driver
-      #   driver.trips.each do |trip|
-      #     trip.driver_id = 0
-      #   end
       driver.destroy
       redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
     else
