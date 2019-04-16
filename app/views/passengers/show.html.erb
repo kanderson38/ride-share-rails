@@ -1,12 +1,17 @@
 <h2>Passenger Details</h2>
 
-<ul>
-<li>
-<span><%= @passenger.id %></span>
-<span><%= @passenger.name %></span>
+<ul class="detail-list">
+<li class="passenger-details">
+<span id="name"><h2><%= @passenger.name %></h2></span>
+<span><strong>Trips</strong></span>
+<span id="charges"><strong>Total Charges</strong></span>
+<span></span>
+<span></span>
+<span></span>
+
 <span><% @passenger.trips.each do |trip| %>
     <%= trip.id %>
 <% end %></span>
-<span> Total Amount Charged: <%= @passenger.amount_charged%></span>
+<span><%= @passenger.amount_charged%></span>
 <span><%= link_to "Edit", edit_passenger_path(@passenger.id)  %></span>
 <span><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></span>

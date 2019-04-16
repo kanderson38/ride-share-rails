@@ -11,7 +11,7 @@ class Driver < ApplicationRecord
     end
     sum -= 1.65
     sum *= 0.8
-    return sum
+    return format("$%.2f", sum)
   end
 
   def average_ratings
