@@ -8,14 +8,13 @@ class DriversController < ApplicationController
   end
 
   def create
-    driver = Driver.new(driver_params)
+    @driver = Driver.new(driver_params)
 
-    if driver.name != ""
-      driver.save
-
+    success = @driver.save
+    if success
       redirect_to drivers_path, flash: { alert: "driver added successfully" }
     else
-      redirect_to new_driver_path
+      render :new
     end
   end
 
