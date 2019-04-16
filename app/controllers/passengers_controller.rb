@@ -17,14 +17,14 @@ class PassengersController < ApplicationController
   end
 
   def create
-    passenger = Passenger.new(passenger_params)
+    @passenger = Passenger.new(passenger_params)
 
-    if passenger.name != ""
-      passenger.save
+    success = @passenger.save
 
-      redirect_to passengers_path, flash: { alert: "passenger added successfully" }
+    if success 
+      redirect_to passengers_path
     else
-      redirect_to new_passenger_path
+      render :new
     end
   end
 
@@ -37,14 +37,12 @@ class PassengersController < ApplicationController
   end
 
   def update
-    passenger = Passenger.find_by(id: params[:id])
-
-    if passenger
-      passenger.update(passenger_params)
-
+    @passenger = Passenger.find_by(id: params[:id])
+    success = @passenger.update(passenger_params)
+    if success
       redirect_to passenger_path(params[:id])
     else
-      redirect_to passenger_path, flash: { alert: "No such passenger" }
+      render :edit
     end
   end
 
