@@ -12,7 +12,7 @@ class TripsController < ApplicationController
   def create
     if params[:passenger_id]
       driver = Driver.find_available_driver
-      success = Trip.create(driver: driver, passenger: params[:passenger_id], cost: 0, rating: nil)
+      success = Trip.create(driver_id: driver, passenger_id: params[:passenger_id], cost: 0, rating: nil)
 
       if success 
         redirect_to trips_path
