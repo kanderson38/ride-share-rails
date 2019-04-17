@@ -11,11 +11,12 @@ class TripsController < ApplicationController
 
   def create
     if params[:passenger_id]
+      passenger = Passenger.find_by(id: params[:passenger_id])
       driver = Driver.find_available_driver
-      success = Trip.create(driver_id: driver, passenger_id: params[:passenger_id], cost: 0, rating: nil)
+      new_trip = Trip.create(driver_id: driver.id, passenger_id: passenger.id, date: Date.today, cost: 0, rating: nil)
 
-      if success
-        redirect_to trips_path
+      if new_trip
+        redirect_to trip_path(new_trip.id)
       else
         render :new
       end
