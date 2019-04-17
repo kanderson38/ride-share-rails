@@ -14,15 +14,14 @@ class TripsController < ApplicationController
       driver = Driver.find_available_driver
       success = Trip.create(driver: driver, passenger: params[:passenger_id], cost: 0, rating: nil)
 
-      if success 
+      if success
         redirect_to trips_path
       else
         render :new
       end
-
     else
       head :not_found
-      return 
+      return
     end
   end
 
