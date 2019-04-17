@@ -65,8 +65,6 @@ describe DriversController do
       expect {
         doomed_driver.destroy
       }.must_change "Driver.count", -1
-
-      expect
     end
   end
 end

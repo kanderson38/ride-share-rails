@@ -11,7 +11,7 @@
 <span></span>
 
 <span id="trips"><% @driver.trips.each do |trip| %>
-    <%= trip.id %>
+    <%= link_to trip.id, trip_path(trip.id) %>
 <% end %></span>
 <span id="earnings"><%= @driver.total_earnings%></span>
 <span id="ratings"><%= @driver.average_ratings%></span>
