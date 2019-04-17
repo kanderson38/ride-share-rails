@@ -9,6 +9,23 @@ class TripsController < ApplicationController
     end
   end
 
+  def create
+    if params[:passenger_id]
+      driver = Driver.find_available_driver
+      success = Trip.create(driver: driver, passenger: params[:passenger_id], cost: 0, rating: nil)
+
+      if success 
+        redirect_to trips_path
+      else
+        render :new
+      end
+
+    else
+      head :not_found
+      return 
+    end
+  end
+
   def edit
     trip_id = params[:id]
 
