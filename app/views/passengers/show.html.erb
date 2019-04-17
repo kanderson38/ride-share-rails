@@ -10,7 +10,7 @@
 <span></span>
 
 <span><% @passenger.trips.each do |trip| %>
-    <%= trip.id %>
+    <%= link_to trip.id, trip_path(trip.id) %>
 <% end %></span>
 <span><%= @passenger.amount_charged%></span>
 <span><%= link_to "Edit", edit_passenger_path(@passenger.id)  %></span>
