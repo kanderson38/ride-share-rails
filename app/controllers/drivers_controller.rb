@@ -56,9 +56,9 @@ class DriversController < ApplicationController
 
     if driver
       driver.destroy
-      redirect_to drivers_path, flash: { alert: "driver successfully deleted" }
+      redirect_to drivers_path
     else
-      redirect_to drivers_path, flash: { alert: "No such driver" }
+      redirect_to drivers_path
     end
   end
 

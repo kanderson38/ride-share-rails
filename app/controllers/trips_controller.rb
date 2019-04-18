@@ -35,4 +35,22 @@ class TripsController < ApplicationController
       head :not_found
     end
   end
+
+  def destroy
+    trip_id = params[:id]
+    trip = Trip.find_by(id: trip_id)
+    if trip
+      passenger = trip.passenger_id
+
+      if trip
+        trip.destroy
+        redirect_to passenger_path(passenger)
+      else
+        redirect_to passenger_path(passenger)
+      end
+    else
+      head :not_found
+      return
+    end
+  end
 end
