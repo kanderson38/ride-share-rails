@@ -8,6 +8,7 @@ class Passenger < ApplicationRecord
     self.trips.each do |trip|
       sum += trip.cost
     end
+    sum /= 100.0
     return format("$%.2f", sum)
   end
 end

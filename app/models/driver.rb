@@ -9,6 +9,7 @@ class Driver < ApplicationRecord
     self.trips.each do |trip|
       sum += trip.cost
     end
+    sum /= 100.0
     sum -= 1.65
     sum *= 0.8
     return format("$%.2f", sum)
@@ -18,7 +19,9 @@ class Driver < ApplicationRecord
     sum = 0
     unless self.trips.count == 0
       self.trips.each do |trip|
-        sum += trip.rating
+        if trip.rating
+          sum += trip.rating
+        end
       end
       average = sum / self.trips.count
       return average
