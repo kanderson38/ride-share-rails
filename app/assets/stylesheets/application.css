@@ -90,4 +90,44 @@ nav {
       padding-left: 50px;
   }
 
+
+.trips {
+    box-shadow: 2px 2px 5px grey;
+    margin: 5rem;
+    padding: 1rem;
+    border-radius: 25px;  
+    text-align: center
+
+}
+
+thead {
+    background-color: thistle;
+    color: white;
+    border: rgb(43, 114, 87)
+
+}
+
+th {
+    padding: 0.5rem;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: lightgrey
+}
+
+th:nth-of-type(2){
+    padding-left: 2.5rem;
+    padding-right: 2.5rem
+}
+
+th:nth-of-type(3){
+  padding-left: 2.5rem;
+  padding-right: 2.5rem
+}
+
+th:nth-of-type(4){
+  padding-left: 3rem;
+  padding-right: 3rem
+}
+
   

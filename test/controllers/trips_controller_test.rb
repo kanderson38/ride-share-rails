@@ -1,9 +1,9 @@
 require "test_helper"
 
 describe TripsController do
-  let (:trip) {
-    Trip.create(driver: )
-  }
+  # let (:trip) {
+  #   Trip.create(driver: )
+  # }
 
   describe "show" do
       it "can get a valid trip" do
