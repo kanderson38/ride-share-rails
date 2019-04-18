@@ -42,15 +42,10 @@ class TripsController < ApplicationController
     if trip
       passenger = trip.passenger_id
 
-      if trip
-        trip.destroy
-        redirect_to passenger_path(passenger)
-      else
-        redirect_to passenger_path(passenger)
-      end
+      trip.destroy
+      redirect_to passenger_path(passenger)
     else
-      head :not_found
-      return
+      redirect_to passenger_path(passenger)
     end
   end
 end
