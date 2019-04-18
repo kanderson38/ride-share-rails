@@ -1,0 +1,10 @@
+<p> Driver: <%= @trip.driver.name %> </p>
+<p><%= @trip.date %></p>
+
+<%= form_with model: @trip, class: 'trip-form' do |f| %>
+  
+<%= f.label :rating %>
+    <%= f.select :rating, options_for_select([1, 2, 3, 4, 5], selected=@trip.rating) %>
+    
+  <%= f.submit "Save", class: 'save-button' %>
+<% end %>
