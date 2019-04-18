@@ -2,7 +2,7 @@ require "test_helper"
 
 describe DriversController do
   let (:driver) {
-    Driver.create(name: "Tom", vin: "123456")
+    Driver.create(name: "Tom", vin: "6ERL")
   }
 
   describe "index" do
