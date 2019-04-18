@@ -18,3 +18,33 @@
     <span><%=link_to "Create a New Trip", passenger_trips_path(@passenger.id), method: :post %></span>
     </li>
   </ul>
+
+
+<table class ="trips">
+  <thead>
+    <tr>
+    <th> ID </th>
+    <th> Date </th>
+    <th> Driver </th>
+    <th> Passenger </th>
+    <th> Price </th>
+    <th> Rating </th>
+    <th> Edit </th>
+    <th> Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @passenger.trips.each do |trip| %>
+    <tr>
+    <td> <%= link_to trip.id, trip_path(trip.id) %> </td>
+    <td> <%= trip.date %> </td>
+    <td> <%= trip.driver.name %> </td>
+    <td> <%= trip.passenger.name %> </td>
+    <td> <%= trip.cost %> </td>
+    <td> <%= trip.rating %> </td>
+    <td> <%= link_to "Edit", edit_passenger_path(@passenger.id)  %> </td>
+    <td><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
