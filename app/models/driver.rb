@@ -31,6 +31,8 @@ class Driver < ApplicationRecord
 
   def self.find_available_driver
     available_driver = Driver.find_by(active: true)
+    available_driver.active = false
+    available_driver.save
     return available_driver
   end
 end
