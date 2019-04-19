@@ -8,7 +8,7 @@ class PassengersController < ApplicationController
     @passenger = Passenger.find_by(id: passenger_id)
 
     if !@passenger
-      redirect_to passengers_path, flash: { error: "Could not find passenger with id: #{passenger_id}" }
+      head :not_found
     end
   end
 

@@ -22,6 +22,12 @@ describe PassengersController do
       get passenger_path(passenger.id)
       must_respond_with :success
     end
+
+    it "returns a 404 status code if the book doesn't exist" do
+      passenger_id = 12345
+      get passenger_path(passenger_id)
+      must_respond_with :not_found
+    end
   end
 
   describe "edit" do
@@ -78,6 +84,23 @@ describe PassengersController do
       expect(passenger.name).must_equal passenger_data[:passenger][:name]
       expect(passenger.phone_num).must_equal passenger_data[:passenger][:phone_num]
     end
+
+    it "doesn't create new passenger with bad passenger data is sent" do
+      passenger_data = {
+        passenger: {
+          name: "",
+        },
+      }
+      expect(Passenger.new(passenger_data[:passenger])).wont_be :valid?
+
+      expect {
+        post passengers_path, params: passenger_data
+      }.wont_change "Passenger.count"
+
+    end
+
+
+
   end
 
   describe "destroy" do
@@ -95,7 +118,18 @@ describe PassengersController do
       expect(after_passenger).must_be_nil
 
     end
+
+    it "redirect if trying to delete book does not exist" do
+      passenger_id = 12345
+      expect(Passenger.find_by(id: passenger_id)).must_be_nil
+      expect {
+        delete passenger_path(passenger_id)
+      }.wont_change "Passenger.count"
+      must_respond_with :redirect
+    end
+    
   end
+
 
 
 end
