@@ -22,6 +22,12 @@ describe DriversController do
       get driver_path(driver.id)
       must_respond_with :success
     end
+
+    it "returns a 404 status code if the book doesn't exist" do
+      driver_id = 12345
+      get driver_path(driver_id)
+      must_respond_with :not_found
+    end
   end
 
   describe "edit" do
@@ -51,6 +57,7 @@ describe DriversController do
       patch driver_path(12345), params: driver_data
       must_respond_with :redirect
     end
+
   end
 
   describe "new" do
@@ -74,6 +81,24 @@ describe DriversController do
         post drivers_path, params: driver_data
       }.must_change "Driver.count", 1
     end
+
+    it "doesn't create new driver when bad driver data is sent" do
+      driver_data = {
+        driver: {
+          name: "",
+        },
+      }
+      expect(Driver.new(driver_data[:driver])).wont_be :valid?
+
+      expect {
+        post drivers_path, params: driver_data
+      }.wont_change "Driver.count"
+
+    end
+
+
+
+
   end
 
   describe "destroy" do
@@ -83,5 +108,18 @@ describe DriversController do
         delete driver_path(doomed_driver)
       }.must_change "Driver.count", -1
     end
+
+  
+    it "redirect if trying to delete driver does not exist" do
+      driver_id = 12345
+      expect(Driver.find_by(id: driver_id)).must_be_nil
+      expect {
+        delete driver_path(driver_id)
+      }.wont_change "Driver.count"
+      must_respond_with :redirect
+    end
+
+
+
   end
 end

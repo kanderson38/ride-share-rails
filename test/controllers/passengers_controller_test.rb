@@ -55,6 +55,17 @@ describe PassengersController do
       expect(passenger.name).must_equal(passenger_data[:passenger][:name])
     end
 
+    it "does not update with fake passenger info" do
+      passenger_data = {
+        passenger: {
+          name: "not existing",
+          phone_num: "123",
+        },
+      }
+      passenger_id = Passenger.last.id + 1
+      patch passenger_path(passenger_id), params: passenger_data
+    end
+
   end
 
   describe "new" do
@@ -99,8 +110,6 @@ describe PassengersController do
 
     end
 
-
-
   end
 
   describe "destroy" do
@@ -119,7 +128,7 @@ describe PassengersController do
 
     end
 
-    it "redirect if trying to delete book does not exist" do
+    it "redirect if trying to delete passenger does not exist" do
       passenger_id = 12345
       expect(Passenger.find_by(id: passenger_id)).must_be_nil
       expect {
@@ -127,9 +136,7 @@ describe PassengersController do
       }.wont_change "Passenger.count"
       must_respond_with :redirect
     end
-    
+
   end
-
-
 
 end
