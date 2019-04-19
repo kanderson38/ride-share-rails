@@ -32,15 +32,24 @@ describe DriversController do
   end
 
   describe "update" do
+    let(:driver_data) {
+      { driver: {
+        name: "new name",
+        vin: "new VIN",
+      } }
+    }
     it "updated the driver's info" do
       driver = Driver.first
-      driver.name = "new name"
-      driver.vin = "new VIN"
 
-      driver.save!
+      patch driver_path(driver.id), params: driver_data
 
       expect(Driver.first.name).must_equal "new name"
       expect(Driver.first.vin).must_equal "new VIN"
+    end
+
+    it "redirects for a nonexistent driver" do
+      patch driver_path(12345), params: driver_data
+      must_respond_with :redirect
     end
   end
 
@@ -52,9 +61,17 @@ describe DriversController do
   end
 
   describe "create" do
+    let(:driver_data) {
+      {
+        driver: {
+          name: "Schmitty Tarleton",
+          vin: "123",
+        },
+      }
+    }
     it "adds a driver to the database" do
       expect {
-        Driver.create!(name: "new", vin: "vin")
+        post drivers_path, params: driver_data
       }.must_change "Driver.count", 1
     end
   end
@@ -63,7 +80,7 @@ describe DriversController do
     it "removes the driver from the database" do
       doomed_driver = Driver.create!(name: "Tom Dead", vin: "SDFGSAFDG")
       expect {
-        doomed_driver.destroy
+        delete driver_path(doomed_driver)
       }.must_change "Driver.count", -1
     end
   end

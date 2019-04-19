@@ -60,7 +60,7 @@ class TripsController < ApplicationController
       trip.destroy
       redirect_to passenger_path(passenger)
     else
-      redirect_to passenger_path(passenger)
+      redirect_to root_path
     end
   end
 
